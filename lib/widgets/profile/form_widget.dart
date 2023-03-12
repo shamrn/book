@@ -7,7 +7,6 @@ class FormWidget extends StatelessWidget {
   final String labelText;
   final TextEditingController textController;
   final FocusNode currentFocusNode;
-  final bool autoFocus;
   final FocusNode? nextFocusNode;
   final List<MaskTextInputFormatter>? inputFormatters;
   final TextInputType keyboardType;
@@ -17,7 +16,6 @@ class FormWidget extends StatelessWidget {
     required this.labelText,
     required this.textController,
     required this.currentFocusNode,
-    required this.autoFocus,
     this.nextFocusNode,
     this.inputFormatters,
     this.keyboardType = TextInputType.text,
@@ -29,7 +27,6 @@ class FormWidget extends StatelessWidget {
       keyboardType: keyboardType,
       controller: textController,
       focusNode: currentFocusNode,
-      autofocus: autoFocus,
       inputFormatters: inputFormatters,
 
       style: TextStyles.montserratMedium

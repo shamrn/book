@@ -10,8 +10,14 @@ class ColorStyles {
 }
 
 class TextStyles {
+  static const montserratBold =
+  TextStyle(fontFamily: 'Montserrat', fontWeight: FontWeight.bold);
   static const montserratMedium =
-  TextStyle(fontFamily: 'Montserrat', fontWeight: FontWeight.w500);
-  static const mulishBold = TextStyle(
-      fontFamily: 'Mulish', fontWeight: FontWeight.bold);
+      TextStyle(fontFamily: 'Montserrat', fontWeight: FontWeight.w500);
+  static const montserratSemiBold =
+      TextStyle(fontFamily: 'Montserrat', fontWeight: FontWeight.w600);
+  static const mulishBold =
+      TextStyle(fontFamily: 'Mulish', fontWeight: FontWeight.bold);
+  static const mulishSemiBold =
+      TextStyle(fontFamily: 'Mulish', fontWeight: FontWeight.w600);
 }

@@ -28,35 +28,32 @@ class NavigationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<NavigationCubit>(
-      create: (context) => NavigationCubit(),
-      child: Scaffold(
-        bottomNavigationBar: BlocBuilder<NavigationCubit, NavigationItems>(
-          builder: (context, item) {
-            return BottomNavigationBar(
-              currentIndex: item.index,
-              iconSize: 24,
-              selectedLabelStyle:
-                  TextStyles.montserratMedium.copyWith(fontSize: 10),
-              unselectedLabelStyle:
-                  TextStyles.montserratMedium.copyWith(fontSize: 10),
-              unselectedItemColor: ColorStyles.secondColor,
-              selectedItemColor: ColorStyles.primaryColor,
-              type: BottomNavigationBarType.fixed,
-              items: _bottomNavigationBarItems,
-              onTap: (index) {
-                context
-                    .read<NavigationCubit>()
-                    .setNavigationItem(NavigationItems.values[index]);
-              },
-            );
-          },
-        ),
-        body: BlocBuilder<NavigationCubit, NavigationItems>(
-          builder: (context, item) {
-            return _navigationItemScreenMapper[item]!;
-          },
-        ),
+    return Scaffold(
+      bottomNavigationBar: BlocBuilder<NavigationCubit, NavigationItems>(
+        builder: (context, item) {
+          return BottomNavigationBar(
+            currentIndex: item.index,
+            iconSize: 24,
+            selectedLabelStyle:
+                TextStyles.montserratMedium.copyWith(fontSize: 10),
+            unselectedLabelStyle:
+                TextStyles.montserratMedium.copyWith(fontSize: 10),
+            unselectedItemColor: ColorStyles.secondColor,
+            selectedItemColor: ColorStyles.primaryColor,
+            type: BottomNavigationBarType.fixed,
+            items: _bottomNavigationBarItems,
+            onTap: (index) {
+              context
+                  .read<NavigationCubit>()
+                  .setNavigationItem(NavigationItems.values[index]);
+            },
+          );
+        },
+      ),
+      body: BlocBuilder<NavigationCubit, NavigationItems>(
+        builder: (context, item) {
+          return _navigationItemScreenMapper[item]!;
+        },
       ),
     );
   }

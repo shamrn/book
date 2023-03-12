@@ -34,7 +34,6 @@ class FormListWidget extends StatelessWidget {
           textController: _firstNameController,
           currentFocusNode: _firstNameFocus,
           nextFocusNode: _lastNameFocus,
-          autoFocus: true,
         ),
         const SizedBox(
           height: 12,
@@ -44,7 +43,6 @@ class FormListWidget extends StatelessWidget {
           textController: _lastNameController,
           currentFocusNode: _lastNameFocus,
           nextFocusNode: _emailFocus,
-          autoFocus: false,
         ),
         const SizedBox(
           height: 12,
@@ -54,7 +52,6 @@ class FormListWidget extends StatelessWidget {
           textController: _emailController,
           currentFocusNode: _emailFocus,
           nextFocusNode: _phoneFocus,
-          autoFocus: false,
           keyboardType: TextInputType.emailAddress,
         ),
         const SizedBox(
@@ -64,7 +61,6 @@ class FormListWidget extends StatelessWidget {
           labelText: 'Номер телефона',
           textController: _phoneController,
           currentFocusNode: _phoneFocus,
-          autoFocus: false,
           keyboardType: TextInputType.phone,
           inputFormatters: [_phoneMaskTextInputFormatter],
         ),
