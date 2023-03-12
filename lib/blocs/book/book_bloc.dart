@@ -11,7 +11,7 @@ class BookBloc extends Bloc<BookEvent, BookState> {
 
   void _onBookLoad(BookLoadEvent event, Emitter<BookState> state) async {
     emit(BookLoadingState());
-    final List<BookList> books = await BookRepository().getList();
+    final List<Book> books = await BookRepository().getBooks();
     emit(BookLoadedState(books: books));
   }
 }

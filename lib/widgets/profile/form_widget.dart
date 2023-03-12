@@ -32,7 +32,7 @@ class FormWidget extends StatelessWidget {
       style: TextStyles.montserratMedium
         ..copyWith(fontSize: 16, color: ColorStyles.primaryColor),
       decoration: InputDecoration(
-        fillColor: ColorStyles.darkenedColor,
+        fillColor: ColorStyles.darkenedBackgroundColor,
         filled: true,
         labelText: labelText,
         labelStyle: TextStyles.montserratMedium

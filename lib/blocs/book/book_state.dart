@@ -7,7 +7,7 @@ class BookInitialState extends BookState {}
 class BookLoadingState extends BookState {}
 
 class BookLoadedState extends BookState {
-  final List<BookList> books;
+  final List<Book> books;
 
   BookLoadedState({required this.books});
 }

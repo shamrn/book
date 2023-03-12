@@ -2,19 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:good_reader/common/app_constants.dart';
 import 'package:good_reader/models/book.dart';
 import 'package:good_reader/widgets/home/like_button_widget.dart';
+import 'package:good_reader/widgets/home/model_bottom_sheet_widget.dart';
 
 class BookCardWidget extends StatelessWidget {
-  final BookList book;
+  final Book book;
+
   const BookCardWidget({Key? key, required this.book}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        BookDetailModalBottomSheetWidget(context: context, book: book);
+      },
       child: Container(
         height: 116,
         decoration: BoxDecoration(
-            color: ColorStyles.darkenedColor,
+            color: ColorStyles.darkenedBackgroundColor,
             borderRadius: BorderRadius.circular(10)),
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -29,10 +33,10 @@ class BookCardWidget extends StatelessWidget {
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   SizedBox(
-                    width: MediaQuery.of(context).size.width / 2,
+                    width: MediaQuery.of(context).size.width / 2.2,
                     child: Text(book.name,
                         softWrap: true,
                         maxLines: 2,
@@ -50,12 +54,14 @@ class BookCardWidget extends StatelessWidget {
                     height: 4,
                   ),
                   SizedBox(
-                    width: MediaQuery.of(context).size.width / 1.8,
+                    width: MediaQuery.of(context).size.width / 2.2,
                     child: Text(
                       book.author.name,
                       overflow: TextOverflow.ellipsis,
+                      softWrap: true,
+                      maxLines: 2,
                       style: TextStyles.montserratBold.copyWith(
-                          fontSize: 12, color: const Color(0xFF595858)),
+                          fontSize: 12, color: ColorStyles.darkenedTextColor),
                     ),
                   ),
                 ],
