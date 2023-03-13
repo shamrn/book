@@ -123,6 +123,10 @@ flutter:
 flutter_native_splash:
   color: "#ffffff"
   image: assets/images/splash_screen_image.png
+  android_12:
+    color: "#ffffff"
+    icon_background_color: "#ffffff"
+    image: assets/images/splash_screen_android_12_image.png
 
 
 # Setup to start installing the launcher icon ( library - https://pub.dev/packages/flutter_launcher_icons )
