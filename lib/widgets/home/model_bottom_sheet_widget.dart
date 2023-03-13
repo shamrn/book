@@ -1,18 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:good_reader/blocs/favorite_books/favorite_books_bloc.dart';
+import 'package:good_reader/blocs/favorite_books/favorite_books_event.dart';
+import 'package:good_reader/blocs/favorite_books/favorite_books_state.dart';
 import 'package:good_reader/common/app_constants.dart';
 import 'package:good_reader/models/book.dart';
 
 class BookDetailModalBottomSheetWidget {
   Book book;
-
   BuildContext context;
+
   late MediaQueryData _mediaData;
   late bool _orientationPortrait;
+  late FavoriteBooksBloc _favoriteBooksBloc;
+  bool _isFavorite = false;
 
   BookDetailModalBottomSheetWidget(
       {required this.context, required this.book}) {
     _mediaData = MediaQuery.of(context);
     _orientationPortrait = _mediaData.orientation == Orientation.portrait;
+    _favoriteBooksBloc = context.read<FavoriteBooksBloc>();
+
+    if (_favoriteBooksBloc.state is FavoriteBooksLoadedState) {
+      FavoriteBooksLoadedState state =
+          _favoriteBooksBloc.state as FavoriteBooksLoadedState;
+      _isFavorite = state.bookIds.contains(book.id);
+    }
 
     _call();
   }
@@ -160,6 +173,13 @@ class BookDetailModalBottomSheetWidget {
                   borderRadius: BorderRadius.circular(10)),
               backgroundColor: ColorStyles.primaryColor),
           onPressed: () {
+            if (!_isFavorite) {
+              _favoriteBooksBloc
+                  .add(FavoriteBooksSetEvent(bookId: book.id));
+            } else {
+              _favoriteBooksBloc.add(
+                  FavoriteBooksUnSetEvent(bookId: book.id));
+            }
             Navigator.pop(context);
           },
           child: Row(
@@ -169,8 +189,11 @@ class BookDetailModalBottomSheetWidget {
                 Icons.favorite_border,
                 size: 24,
               ),
+              const SizedBox(
+                width: 8,
+              ),
               Text(
-                'Добавить в избранное',
+                _isFavorite ? 'Удалить из избранного' : 'Добавить в избранное',
                 style: TextStyles.montserratSemiBold.copyWith(fontSize: 14),
               )
             ],

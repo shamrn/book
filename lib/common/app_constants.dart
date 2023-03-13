@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+const String favoriteBooksBoxName = 'favoriteBooksBox';
 const Duration splashScreenDuration = Duration(seconds: 3);
 
 class ColorStyles {

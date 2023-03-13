@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:good_reader/blocs/favorite_books/favorite_books_bloc.dart';
+import 'package:good_reader/blocs/favorite_books/favorite_books_state.dart';
 import 'package:good_reader/common/app_constants.dart';
 import 'package:good_reader/models/book.dart';
 import 'package:good_reader/widgets/home/like_button_widget.dart';
@@ -67,9 +70,19 @@ class BookCardWidget extends StatelessWidget {
                 ],
               ),
               const Spacer(),
-              const Align(
+              Align(
                 alignment: Alignment.topRight,
-                child: LikeButtonWidget(),
+                child: BlocBuilder<FavoriteBooksBloc, FavoriteBooksState>(
+                  builder: (context, state) {
+                    if (state is FavoriteBooksLoadedState) {
+                      return FavoriteButtonWidget(
+                        bookId: book.id,
+                        isFavorite: state.bookIds.contains(book.id),
+                      );
+                    }
+                    return const SizedBox.shrink();
+                  },
+                ),
               )
             ],
           ),
