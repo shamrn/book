@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:good_reader/blocs/favorite_books/favorite_books_bloc.dart';
 import 'package:good_reader/blocs/favorite_books/favorite_books_event.dart';
 
@@ -18,7 +19,8 @@ class FavoriteButtonWidget extends StatefulWidget {
 class _FavoriteButtonWidgetState extends State<FavoriteButtonWidget>
     with SingleTickerProviderStateMixin {
   static const Color _color = Color(0xFFFF2D20);
-  static const double _size = 24;
+  static const double _width = 21;
+  static const double _height = 18.75;
 
   late final AnimationController _controller = AnimationController(
       duration: const Duration(milliseconds: 100), vsync: this, value: 1.0);
@@ -32,26 +34,28 @@ class _FavoriteButtonWidgetState extends State<FavoriteButtonWidget>
   @override
   Widget build(BuildContext context) {
     FavoriteBooksBloc bloc = context.read<FavoriteBooksBloc>();
+
     return GestureDetector(
-      onTap: () {
-        if (!widget.isFavorite) {
-          bloc.add(FavoriteBooksSetEvent(bookId: widget.bookId));
-        } else {
-          bloc.add(FavoriteBooksUnSetEvent(bookId: widget.bookId));
-        }
-        _controller.reverse().then((value) => _controller.forward());
-      },
-      child: ScaleTransition(
-        scale: Tween(begin: 0.8, end: 1.0).animate(
-            CurvedAnimation(parent: _controller, curve: Curves.linear)),
-        child: widget.isFavorite
-            ? const Icon(
-                Icons.favorite,
-                size: _size,
-                color: _color,
-              )
-            : const Icon(Icons.favorite_border, size: _size, color: _color),
-      ),
-    );
+        onTap: () {
+          if (!widget.isFavorite) {
+            bloc.add(FavoriteBooksSetEvent(bookId: widget.bookId));
+          } else {
+            bloc.add(FavoriteBooksUnSetEvent(bookId: widget.bookId));
+          }
+          _controller.reverse().then((value) => _controller.forward());
+        },
+        child: ScaleTransition(
+            scale: Tween(begin: 0.8, end: 1.0).animate(
+                CurvedAnimation(parent: _controller, curve: Curves.linear)),
+            child:
+            SvgPicture.asset(
+              widget.isFavorite ? 'assets/icons/like_icon.svg'
+                  : 'assets/icons/like_fill_icon.svg',
+              width: _width,
+              height: _height,
+              colorFilter: const ColorFilter.mode(_color, BlendMode.srcIn),
+            )
+
+        ));
   }
 }

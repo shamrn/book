@@ -36,13 +36,6 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
 
-  # Customize Flutter's default white native splash screen with background color and splash image.
-  # Supports dark mode, full screen, and more.
-  flutter_native_splash: ^2.2.19
-
-  # A package which simplifies the task of updating your Flutter app's launcher icon.
-  flutter_launcher_icons: ^0.12.0
-
   # Flutter Widgets that make it easy to implement the BLoC (Business Logic Component) design pattern.
   # Built to be used with the bloc state management package
   flutter_bloc: ^8.1.2
@@ -62,6 +55,10 @@ dependencies:
   # Extension for Hive. Makes it easier to use Hive in Flutter apps.
   hive_flutter: ^1.1.0
 
+  # An SVG rendering and widget library for Flutter, which allows painting and displaying
+  # Scalable Vector Graphics 1.1 files.
+  flutter_svg: ^2.0.4
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -72,6 +69,13 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
+
+  # Customize Flutter's default white native splash screen with background color and splash image.
+  # Supports dark mode, full screen, and more.
+  flutter_native_splash: ^2.2.19
+
+  # A package which simplifies the task of updating your Flutter app's launcher icon.
+  flutter_launcher_icons: ^0.12.0
 
   # Command - 'flutter packages pub run build_runner watch' for build routs
   # A build system for Dart code generation and modular compilation.
@@ -95,7 +99,16 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/profile_image.jpeg
-
+    - assets/icons/like_icon.svg
+    - assets/icons/like_fill_icon.svg
+    - assets/icons/home_icon.svg
+    - assets/icons/home_fill_icon.svg
+    - assets/icons/search_icon.svg
+    - assets/icons/search_fill_icon.svg
+    - assets/icons/favorite_icon.svg
+    - assets/icons/favorite_fill_icon.svg
+    - assets/icons/profile_icon.svg
+    - assets/icons/profile_fill_icon.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

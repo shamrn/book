@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:good_reader/blocs/navigation/navigation_cubit.dart';
 import 'package:good_reader/blocs/navigation/navigation_enum.dart';
 import 'package:good_reader/common/app_constants.dart';
@@ -16,12 +17,39 @@ class NavigationScreen extends StatelessWidget {
     NavigationItems.profile: ProfileScreen(),
   };
 
-  static const List<BottomNavigationBarItem> _bottomNavigationBarItems = [
-    BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Главная'),
-    BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Поиск'),
+  static final List<BottomNavigationBarItem> _bottomNavigationBarItems = [
     BottomNavigationBarItem(
-        icon: Icon(Icons.favorite_outline_sharp), label: 'Избранное'),
-    BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Профиль')
+        icon: SvgPicture.asset(
+          'assets/icons/home_icon.svg',
+        ),
+        activeIcon: SvgPicture.asset(
+          'assets/icons/home_fill_icon.svg',
+        ),
+        label: 'Главная'),
+    BottomNavigationBarItem(
+        icon: SvgPicture.asset(
+          'assets/icons/search_icon.svg',
+        ),
+        activeIcon: SvgPicture.asset(
+          'assets/icons/search_fill_icon.svg',
+        ),
+        label: 'Поиск'),
+    BottomNavigationBarItem(
+        icon: SvgPicture.asset(
+          'assets/icons/favorite_icon.svg',
+        ),
+        activeIcon: SvgPicture.asset(
+          'assets/icons/favorite_fill_icon.svg',
+        ),
+        label: 'Избранное'),
+    BottomNavigationBarItem(
+        icon: SvgPicture.asset(
+          'assets/icons/profile_icon.svg',
+        ),
+        activeIcon: SvgPicture.asset(
+          'assets/icons/profile_fill_icon.svg',
+        ),
+        label: 'Профиль')
   ];
 
   const NavigationScreen({Key? key}) : super(key: key);
