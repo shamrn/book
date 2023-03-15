@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:good_reader/blocs/favorite_books/favorite_books_bloc.dart';
 import 'package:good_reader/blocs/favorite_books/favorite_books_event.dart';
 import 'package:good_reader/blocs/favorite_books/favorite_books_state.dart';
@@ -174,26 +175,27 @@ class BookDetailModalBottomSheetWidget {
               backgroundColor: ColorStyles.primaryColor),
           onPressed: () {
             if (!_isFavorite) {
-              _favoriteBooksBloc
-                  .add(FavoriteBooksSetEvent(bookId: book.id));
+              _favoriteBooksBloc.add(FavoriteBooksSetEvent(bookId: book.id));
             } else {
-              _favoriteBooksBloc.add(
-                  FavoriteBooksUnSetEvent(bookId: book.id));
+              _favoriteBooksBloc.add(FavoriteBooksUnSetEvent(bookId: book.id));
             }
             Navigator.pop(context);
           },
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Icon(
-                Icons.favorite_border,
-                size: 24,
+              SvgPicture.asset(
+                'assets/icons/like_icon.svg',
+                width: 21,
+                height: 18.75,
+                colorFilter:
+                    const ColorFilter.mode(Colors.white, BlendMode.srcIn),
               ),
               const SizedBox(
                 width: 8,
               ),
               Text(
-                _isFavorite ? 'Удалить из избранного' : 'Добавить в избранное',
+                !_isFavorite ? 'Удалить из избранного' : 'Добавить в избранное',
                 style: TextStyles.montserratSemiBold.copyWith(fontSize: 14),
               )
             ],
