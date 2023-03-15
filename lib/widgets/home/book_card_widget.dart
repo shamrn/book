@@ -77,7 +77,6 @@ class BookCardWidget extends StatelessWidget {
                     if (state is FavoriteBooksLoadedState) {
                       return FavoriteButtonWidget(
                         bookId: book.id,
-                        isFavorite: state.bookIds.contains(book.id),
                       );
                     }
                     return const SizedBox.shrink();

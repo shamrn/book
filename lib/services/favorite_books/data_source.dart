@@ -11,11 +11,7 @@ abstract class FavoriteBookDataSource {
 
 class FavoriteBooksLocalDataSourceImpl implements FavoriteBookDataSource {
   static const _boxName = 'favoriteBooksBox';
-  late final Box _favoriteBooksBox;
-
-  FavoriteBooksLocalDataSourceImpl() {
-    _initDB();
-  }
+  static final Box _favoriteBooksBox = Hive.box(_boxName);
 
   @override
   void add({required int bookId}) async {
@@ -31,9 +27,5 @@ class FavoriteBooksLocalDataSourceImpl implements FavoriteBookDataSource {
   @override
   List<int> getIds() {
     return _favoriteBooksBox.values.cast<int>().toList();
-  }
-
-  void _initDB() async {
-    _favoriteBooksBox = Hive.box(_boxName);
   }
 }
