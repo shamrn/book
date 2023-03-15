@@ -15,6 +15,30 @@ class FavoriteBooksBloc extends Bloc<FavoriteBooksEvent, FavoriteBooksState> {
     on<FavoriteBooksUnSetEvent>(_onFavoriteBooksUnSet);
   }
 
+  bool isFavorite({required int bookId}) {
+    bool isFavorite = false;
+
+    if (state is FavoriteBooksLoadedState) {
+      FavoriteBooksLoadedState state_ = state as FavoriteBooksLoadedState;
+      isFavorite = state_.bookIds.contains(bookId);
+    }
+
+    return isFavorite;
+  }
+
+  void switching({required int bookId}) {
+    if (state is FavoriteBooksLoadedState) {
+      FavoriteBooksLoadedState state_ = state as FavoriteBooksLoadedState;
+      bool isFavorite = state_.bookIds.contains(bookId);
+
+      if (isFavorite) {
+        add(FavoriteBooksUnSetEvent(bookId: bookId));
+      } else {
+        add(FavoriteBooksSetEvent(bookId: bookId));
+      }
+    }
+  }
+
   void _onFavoriteBooksLoad(
       FavoriteBooksLoadEvent event, Emitter<FavoriteBooksState> state) {
     emit(FavoriteBooksLoadedState(

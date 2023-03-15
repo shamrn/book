@@ -2,14 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:good_reader/blocs/favorite_books/favorite_books_bloc.dart';
-import 'package:good_reader/blocs/favorite_books/favorite_books_event.dart';
 
 class FavoriteButtonWidget extends StatefulWidget {
   final int bookId;
-  final bool isFavorite;
 
-  const FavoriteButtonWidget(
-      {Key? key, required this.bookId, required this.isFavorite})
+  const FavoriteButtonWidget({Key? key, required this.bookId})
       : super(key: key);
 
   @override
@@ -34,28 +31,23 @@ class _FavoriteButtonWidgetState extends State<FavoriteButtonWidget>
   @override
   Widget build(BuildContext context) {
     FavoriteBooksBloc bloc = context.read<FavoriteBooksBloc>();
+    bool isFavorite = bloc.isFavorite(bookId: widget.bookId);
 
     return GestureDetector(
         onTap: () {
-          if (!widget.isFavorite) {
-            bloc.add(FavoriteBooksSetEvent(bookId: widget.bookId));
-          } else {
-            bloc.add(FavoriteBooksUnSetEvent(bookId: widget.bookId));
-          }
+          bloc.switching(bookId: widget.bookId);
           _controller.reverse().then((value) => _controller.forward());
         },
         child: ScaleTransition(
             scale: Tween(begin: 0.8, end: 1.0).animate(
                 CurvedAnimation(parent: _controller, curve: Curves.linear)),
-            child:
-            SvgPicture.asset(
-              widget.isFavorite ? 'assets/icons/like_icon.svg'
-                  : 'assets/icons/like_fill_icon.svg',
+            child: SvgPicture.asset(
+              isFavorite
+                  ? 'assets/icons/like_fill_icon.svg'
+                  : 'assets/icons/like_icon.svg',
               width: _width,
               height: _height,
               colorFilter: const ColorFilter.mode(_color, BlendMode.srcIn),
-            )
-
-        ));
+            )));
   }
 }

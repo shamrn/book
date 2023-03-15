@@ -5,10 +5,6 @@ class SearchScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: SafeArea(
-        child: Text('Search'),
-      ),
-    );
+    return const Scaffold();
   }
 }
